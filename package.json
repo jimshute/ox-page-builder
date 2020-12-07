@@ -4,7 +4,7 @@
   "scripts": {
     "clean": "rimraf -fr lib",
     "serve": "vue-cli-service serve",
-    "build": "npm run clean && babel src/lib --out-dir lib --extensions .ts,.js,.tsx --ignore src/lib/models src/lib/styles --copy-files && tsc --project tsconfig.json",
+    "build": "npm run clean && tsc --project tsconfig.json",
     "watch": "npm run clean && tsc --project tsconfig.json && babel src/lib --watch --out-dir lib --extensions .ts,.js,.tsx --ignore src/lib/models src/lib/styles --copy-files",
     "lint": "vue-cli-service lint"
   },

@@ -1,0 +1,35 @@
+.cb-paper-builder-module-section-wrapper {
+  border: 1px solid transparent;
+  .cb-paper-builder-module-actions-wrapper {
+    visibility: hidden;
+    position: relative;
+    height: 0;
+    .cb-paper-builder-module-actions-inner {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      z-index: 90;
+      line-height: 20px;
+      padding: 0 20px;
+      background-color: #3e5bbc;
+      color: #fff;
+      font-size: 12px;
+      a,
+      a:link,
+      a:visited {
+        color: #fff;
+      }
+    }
+  }
+  h2 {
+    .section-title-name {
+      display: inline-block;
+    }
+  }
+  &.cb-paper-builder-module-section-wrapper-active {
+    border-color: #3e5bbc;
+    & > .cb-paper-builder-module-actions-wrapper {
+      visibility: visible;
+    }
+  }
+}

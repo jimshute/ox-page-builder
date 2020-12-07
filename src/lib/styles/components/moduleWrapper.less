@@ -1,0 +1,47 @@
+.cb-paper-builder-module-wrapper {
+  .cb-paper-builder-module-wrapper-inner {
+    border: 1px solid transparent;
+  }
+  div[contenteditable]:focus {
+    outline: #3e5bbc solid 1px;
+  }
+  .cb-paper-builder-module-actions-wrapper {
+    visibility: hidden;
+    position: relative;
+    height: 0;
+    .cb-paper-builder-module-actions-inner {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      z-index: 90;
+      line-height: 20px;
+      padding: 0 8px;
+      background-color: #3e5bbc;
+      color: #fff;
+      font-size: 12px;
+      a {
+        margin: 0 4px;
+      }
+      a,
+      a:link,
+      a:visited {
+        color: #fff;
+      }
+    }
+  }
+  .cb-paper-builder-module-wrapper {
+    &.cb-paper-builder-module-wrapper-active {
+      .cb-paper-builder-module-wrapper-inner {
+        border-color: #3e5bbc;
+        div[contenteditable]:focus {
+          outline: none;
+        }
+      }
+      &
+        > .cb-paper-builder-module-wrapper-inner
+        .cb-paper-builder-module-actions-wrapper {
+        visibility: visible;
+      }
+    }
+  }
+}

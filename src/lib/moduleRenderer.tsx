@@ -74,7 +74,7 @@ export default class ModuleRenderer extends Vue {
       animation={200}
       handle=".drag-button"
       onInput={(children: any) => this.draggableChange(name, children)}>{
-        children.map((props, index) => <ModuleRenderer {
+        children.map((props, index) => <module-renderer {
           ...{
             props: { layoutProperties: props },
             on: {
@@ -89,7 +89,7 @@ export default class ModuleRenderer extends Vue {
             }
           }
         }
-        ></ModuleRenderer>)}
+        ></module-renderer>)}
     </vuedraggable>
   }
 
@@ -127,4 +127,8 @@ export default class ModuleRenderer extends Vue {
     }}>
     </this.wrapper>
   }
+}
+
+if (!Vue.component('module-renderer')) {
+  Vue.component('module-renderer', ModuleRenderer)
 }

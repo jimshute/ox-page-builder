@@ -2,7 +2,7 @@ import ModuleBase from './moduleBase';
 import { Component, InjectReactive, Prop } from 'vue-property-decorator';
 import LayoutProperties from '../models/layoutProperties';
 import QuestionPaperSection from '@netm/cb-question-viewer/lib/models/questionPaperSection';
-import toChineseNumber from '../../utils/to-chinese-number';
+import toChineseNumber from '../utils/to-chinese-number';
 
 @Component
 export default class SectionModule extends ModuleBase {

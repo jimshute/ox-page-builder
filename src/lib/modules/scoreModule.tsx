@@ -1,7 +1,7 @@
-import toChineseNumber from '@/utils/to-chinese-number';
 import PaperTreeNode from '@netm/cb-question-viewer/lib/models/paperTreeNode';
 import { Component, Inject, InjectReactive } from 'vue-property-decorator';
 import LayoutProperties from '../models/layoutProperties';
+import toChineseNumber from '../utils/to-chinese-number';
 import BuildableModule from './buildableModule';
 
 @Component

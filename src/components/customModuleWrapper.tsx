@@ -1,13 +1,8 @@
-import { Component, Emit, Inject, InjectReactive, Prop, Provide, ProvideReactive, Vue } from 'vue-property-decorator';
-import CbIcon from '../cbIcon';
-import ModuleWrapperBase from '../moduleWrapperBase';
+import { ModuleWrapperBase } from '@/lib';
+import { Component, Inject, InjectReactive } from 'vue-property-decorator';
 
-@Component({
-  components: {
-    CbIcon: CbIcon as any
-  }
-})
-export default class ModuleCommonWrapper extends ModuleWrapperBase {
+@Component
+export default class CustomModuleWrapper extends ModuleWrapperBase {
   @InjectReactive()
   private currentId!: number | null;
 
@@ -49,6 +44,7 @@ export default class ModuleCommonWrapper extends ModuleWrapperBase {
       <div class="cb-paper-builder-module-wrapper-inner" style={this.wrapperStyle}>
         <div class="cb-paper-builder-module-actions-wrapper">
           <div class="cb-paper-builder-module-actions-inner">
+            Hello mother fucker!
             {this.draggable && <a class="drag-button"><a-icon type="drag" /></a>}
             <a onClick={() => this.deleteModule()}><cb-icon type="cb-trash" /></a>
           </div>
@@ -69,7 +65,6 @@ export default class ModuleCommonWrapper extends ModuleWrapperBase {
             ...this.$scopedSlots
           }
         }} />
-        {/* {this.$slots.default} */}
       </div>
     </div>
   }

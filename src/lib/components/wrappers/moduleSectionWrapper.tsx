@@ -57,7 +57,7 @@ export default class ModuleSectionWrapper extends ModuleWrapperBase {
           <a onClick={() => this.deleteModule()}><cb-icon type="cb-trash" /></a>
         </div>
       </div>
-      <section-module
+      <this.module
         layoutProperties={this.filteredProps}
         scopedSlots={{
           sectionNameEditor: ({ text }: any) => <div
@@ -66,8 +66,7 @@ export default class ModuleSectionWrapper extends ModuleWrapperBase {
           >{text}</div>,
           ...this.$scopedSlots
         }}
-      ></section-module>
-      {/* {this.$slots.default} */}
+      ></this.module>
     </div >
   }
 }

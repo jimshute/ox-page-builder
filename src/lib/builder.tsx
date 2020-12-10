@@ -20,6 +20,10 @@ export default class PaperBuilder extends Vue {
   @ProvideReactive()
   private currentId: number | null = null;
 
+  @ProvideReactive()
+  @Prop()
+  private modules!: { [moduleName: string]: any }
+
   @Provide()
   private setCurrentId (currentId: number) {
     this.currentId = currentId;

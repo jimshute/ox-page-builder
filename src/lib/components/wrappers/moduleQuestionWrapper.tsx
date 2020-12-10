@@ -76,13 +76,12 @@ export default class ModuleQuestionWrapper extends ModuleWrapperBase {
           </a-col>
         </a-row>
       </div>
-      <question-module
+      <this.module
         layoutProperties={this.filteredProps}
         scopedSlots={{
           ...this.$scopedSlots
         }}
-      ></question-module>
-      {/* {this.$slots.default} */}
+      ></this.module>
     </div>
   }
 }

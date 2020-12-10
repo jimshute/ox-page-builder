@@ -1,11 +1,11 @@
-import { Component, Emit, Inject, Prop, Provide, ProvideReactive, Vue } from 'vue-property-decorator';
+import { Component, Emit, Inject, InjectReactive, Prop, Provide, ProvideReactive, Vue } from 'vue-property-decorator';
 import * as Wrappers from './components/wrappers';
+import * as Modules from './modules';
 import LayoutProperties from './models/layoutProperties';
 import Vuedraggable from 'vuedraggable';
 
 @Component({
-  components: { Vuedraggable },
-  inject: []
+  components: { Vuedraggable }
 })
 export default class ModuleRenderer extends Vue {
   @Prop({
@@ -13,7 +13,25 @@ export default class ModuleRenderer extends Vue {
   })
   public layoutProperties!: LayoutProperties;
 
+  @InjectReactive()
+  private modules!: { [moduleName: string]: any }
+
+  get innerModules (): { [moduleName: string]: any } {
+    return {
+      ...Modules,
+      ...this.modules,
+    }
+  }
+
+  get module () {
+    let module = this.innerModules[this.layoutProperties.type];
+    return module || this.innerModules.commonModule;
+  }
+
   get wrapper (): any {
+    if (this.module && this.module.wrapper) {
+      return this.module.wrapper;
+    }
     switch (this.layoutProperties.type) {
       case 'questionModule':
         return Wrappers.moduleQuestionWrapper;
@@ -113,7 +131,8 @@ export default class ModuleRenderer extends Vue {
     }
     return <this.wrapper {...{
       props: {
-        layoutProperties: this.layoutProperties
+        layoutProperties: this.layoutProperties,
+        module: this.module
       },
       on: {
         change: (properites: LayoutProperties) => this.onChange(properites),

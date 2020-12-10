@@ -1,27 +1,36 @@
-import { Component, Emit, Inject, Prop, Provide, ProvideReactive, Vue } from 'vue-property-decorator';
+import { Component, Emit, Inject, InjectReactive, Prop, Provide, ProvideReactive, Vue } from 'vue-property-decorator';
 import LayoutProperties from './models/layoutProperties';
 import * as Modules from './modules';
 
 @Component({
-  inject: []
 })
-export default class ModuleRenderer extends Vue {
+export default class RuntimeRenderer extends Vue {
   @Prop({
     required: true
   })
   public layoutProperties!: LayoutProperties;
 
+  @InjectReactive()
+  private modules!: { [moduleName: string]: any }
+
+  get innerModules (): { [moduleName: string]: any } {
+    return {
+      ...Modules,
+      ...this.modules,
+    }
+  }
+
   get module () {
-    return (Modules as any)[this.layoutProperties.type] || Modules.commonModule;
+    return this.innerModules[this.layoutProperties.type] || Modules.commonModule;
   }
 
   private buildChildren (name: string = 'default', children: LayoutProperties[]) {
-    return children.map((props, index) => <ModuleRenderer {
+    return children.map((props, index) => <runtime-renderer {
       ...{
         props: { layoutProperties: props },
       }
     }
-    ></ModuleRenderer>)
+    ></runtime-renderer>)
   }
 
   private render () {
@@ -50,4 +59,8 @@ export default class ModuleRenderer extends Vue {
     }}>
     </this.module>
   }
+}
+
+if (!Vue.component('runtime-renderer')) {
+  Vue.component('runtime-renderer', RuntimeRenderer)
 }

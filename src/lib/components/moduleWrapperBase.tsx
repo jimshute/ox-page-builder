@@ -1,9 +1,15 @@
 import { Component, Emit, Prop, PropSync, Vue } from 'vue-property-decorator';
 import LayoutProperties from '../models/layoutProperties';
+import { commonModule } from '../modules';
 
 export default class ModuleWrapperBase extends Vue {
   @Prop()
   protected layoutProperties!: LayoutProperties;
+
+  @Prop({
+    default: () => commonModule
+  })
+  protected module: any;
 
   get filteredProps () {
     let { style, ...others } = this.layoutProperties;
@@ -55,9 +61,9 @@ export default class ModuleWrapperBase extends Vue {
   @Emit('change')
   protected onChange (arg: LayoutProperties) {
     let { style } = this.layoutProperties;
-    let { position, top, left, right, bottom } = style || {};
+    let { position, top, left, right, bottom, transform, transformOrigin, width, height } = style || {};
     arg.style = {
-      position, top, left, right, bottom,
+      position, top, left, right, bottom, transform, transformOrigin, width, height,
       ...arg.style
     };
     return arg;

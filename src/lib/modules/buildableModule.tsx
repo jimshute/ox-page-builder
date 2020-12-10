@@ -1,5 +1,3 @@
-import { Emit } from 'vue-property-decorator';
-import LayoutProperties from '../models/layoutProperties';
 import ModuleBase from './moduleBase';
 
 export default class BuildableModule extends ModuleBase {

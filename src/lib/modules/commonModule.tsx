@@ -13,7 +13,7 @@ export default class CommonModule extends BuildableModule {
     }
   }
 
-  private render () {
+  protected render () {
     return <div class="cb-paper-common-module">
       {this.renderComponent()}
     </div>

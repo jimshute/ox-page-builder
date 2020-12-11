@@ -1,4 +1,4 @@
-import { Component, Emit, Prop, PropSync, Vue } from 'vue-property-decorator';
+import { Component, Emit, InjectReactive, Prop, PropSync, Vue } from 'vue-property-decorator';
 import LayoutProperties from '../models/layoutProperties';
 import { commonModule } from '../modules';
 
@@ -10,6 +10,9 @@ export default class ModuleWrapperBase extends Vue {
     default: () => commonModule
   })
   protected module: any;
+
+  @InjectReactive()
+  protected readonly!: boolean;
 
   get filteredProps () {
     let { style, ...others } = this.layoutProperties;

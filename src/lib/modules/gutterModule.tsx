@@ -31,7 +31,7 @@ export default class GutterModule extends BuildableModule {
         {this.renderComponent({})}
         <div class="paper-gutter-tip">
           密封线内不要答题
-      </div>
+        </div>
       </div>
     </div>
   }

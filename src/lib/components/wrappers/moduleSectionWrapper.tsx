@@ -45,6 +45,15 @@ export default class ModuleSectionWrapper extends ModuleWrapperBase {
   }
 
   private render () {
+    let scopedSlots: { [key: string]: any } = {
+      ...this.$scopedSlots,
+    }
+    if (!this.readonly) {
+      scopedSlots.sectionNameEditor = ({ text }: any) => <div
+        contenteditable={true}
+        onBlur={(e: any) => this.onSectionNameChange(e)}
+      >{text}</div>
+    }
     return <div class={['cb-paper-builder-module-section-wrapper', {
       'cb-paper-builder-module-section-wrapper-active': this.currentId === this.moduleId
     }]}
@@ -59,13 +68,7 @@ export default class ModuleSectionWrapper extends ModuleWrapperBase {
       </div>
       <this.module
         layoutProperties={this.filteredProps}
-        scopedSlots={{
-          sectionNameEditor: ({ text }: any) => <div
-            contenteditable={true}
-            onBlur={(e: any) => this.onSectionNameChange(e)}
-          >{text}</div>,
-          ...this.$scopedSlots
-        }}
+        scopedSlots={scopedSlots}
       ></this.module>
     </div >
   }

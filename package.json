@@ -1,10 +1,10 @@
 {
   "name": "@netm/ox-page-builder",
-  "version": "0.0.1-beta.8",
+  "version": "0.0.1-beta.12",
   "scripts": {
     "clean": "rimraf -fr lib",
     "serve": "vue-cli-service serve",
-    "build": "npm run clean && babel src/lib --out-dir lib --extensions .ts,.js,.tsx --ignore src/lib/models src/lib/styles --copy-files && tsc --project tsconfig.json && lessc src/lib/styles/index.less lib/styles/index.css",
+    "build": "npm run clean && babel src/lib --out-dir lib --extensions .ts,.js,.tsx --ignore src/lib/models src/lib/styles --copy-files && tsc --project tsconfig.build.json && lessc src/lib/styles/index.less lib/styles/index.css",
     "watch": "npm run clean && tsc --project tsconfig.json && babel src/lib --watch --out-dir lib --extensions .ts,.js,.tsx --ignore src/lib/models src/lib/styles --copy-files",
     "lint": "vue-cli-service lint --fix"
   },

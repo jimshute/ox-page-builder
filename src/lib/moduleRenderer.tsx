@@ -14,6 +14,9 @@ export default class ModuleRenderer extends Vue {
   public layoutProperties!: LayoutProperties;
 
   @InjectReactive()
+  private readonly!: boolean;
+
+  @InjectReactive()
   private modules!: { [moduleName: string]: any }
 
   get innerModules (): { [moduleName: string]: any } {
@@ -39,6 +42,15 @@ export default class ModuleRenderer extends Vue {
         return Wrappers.moduleSectionWrapper;
       default:
         return Wrappers.moduleCommonWrapper;
+    }
+  }
+
+  get sortable () {
+    if (this.readonly) return false;
+    if (this.layoutProperties.childrenSortable === false) {
+      return false;
+    } else {
+      return true;
     }
   }
 
@@ -90,6 +102,7 @@ export default class ModuleRenderer extends Vue {
     return <vuedraggable
       value={children}
       animation={200}
+      sort={this.sortable}
       handle=".drag-button"
       onInput={(children: any) => this.draggableChange(name, children)}>{
         children.map((props, index) => <module-renderer {

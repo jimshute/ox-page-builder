@@ -43,7 +43,7 @@ export default class SectionModule extends ModuleBase {
 
   private renderSection () { }
 
-  private render () {
+  protected render () {
     return this.renderComponent();
   }
 }

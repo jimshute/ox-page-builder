@@ -18,7 +18,7 @@ export default class PaperModule extends BuildableModule {
     }
   }
 
-  private render () {
+  protected render () {
     return <div
       class="cb-paper-module"
       style={{

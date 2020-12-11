@@ -5,6 +5,7 @@
         :paperLayout="layoutWidthSections"
         :paperTreeNodes="paperTreeNodes"
         :modules="modules"
+        :readonly="true"
         @propertiesChange="onPropertiesChange"
         @delete="onDelete"
       />
@@ -123,7 +124,7 @@ export default class App extends Vue {
   }
 
   private modules = {
-    commonModule: CustomBuildableModule
+    // commonModule: CustomBuildableModule
   }
 
   private paperTreeNodes: any[] = [
@@ -236,17 +237,18 @@ export default class App extends Vue {
   get layoutWidthSections (): LayoutProperties {
     let indexOffset = 0;
     let sectionLayouts: LayoutProperties[] = this.paperTreeNodes.map((sectionNode, index) => {
-      let layoutProperties = {
+      let layoutProperties: LayoutProperties = {
         id: sectionNode.id,
         type: 'sectionModule',
         props: { ...sectionNode.sectionDTO, index },
+        childrenSortable: false,
         children: sectionNode.children.map((questionNode: any, index: number) => ({
           id: questionNode.id,
           type: 'questionModule',
           props: { index: index + indexOffset, ...questionNode.questionDTO }
         }))
       };
-      indexOffset += layoutProperties.children.length;
+      indexOffset += layoutProperties.children!.length;
       return layoutProperties;
     });
     return {

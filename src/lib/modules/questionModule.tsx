@@ -21,7 +21,7 @@ export default class QuestionModule extends ModuleBase {
     </div>
   }
 
-  private render () {
+  protected render () {
     return this.renderComponent();
   }
 }

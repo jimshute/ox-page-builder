@@ -5,6 +5,7 @@ export default interface LayoutProperties {
   text?: string;
   props?: any;
   draggable?: boolean;
+  childrenSortable?: boolean;
   style?: {
     [styleName: string]: number | string
   },

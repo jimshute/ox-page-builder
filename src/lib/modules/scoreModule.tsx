@@ -20,7 +20,7 @@ export default class CommonModule extends BuildableModule {
   @InjectReactive()
   private paperTreeNodes!: PaperTreeNode[];
 
-  private render () {
+  protected render () {
     return <div class="cb-paper-score-module" style={this.style}>
       <span style="display: inline-block;">
         <table>

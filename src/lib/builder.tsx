@@ -18,6 +18,12 @@ export default class PaperBuilder extends Vue {
   private paperLayout!: LayoutProperties;
 
   @ProvideReactive()
+  @Prop({
+    default: false
+  })
+  private readonly!: boolean;
+
+  @ProvideReactive()
   private currentId: number | null = null;
 
   @ProvideReactive()

@@ -64,15 +64,15 @@ export default class ModuleQuestionWrapper extends ModuleWrapperBase {
             难度：{this.questionInfo.difficultyDegree}
           </a-col>
           <a-col span="12" class="right-side">
-            分数：<a-input-number
+            分数：{this.readonly ? this.questionInfo.score : <a-input-number
               size="small"
               value={this.questionInfo.score}
               onBlur={({ target: { value } }: any) => this.scoreChange(Number(value))}>
-            </a-input-number>
-            <a onClick={() => this.onMoveup()}>上移</a>
-            <a onClick={() => this.onMovedown()}>下移</a>
+            </a-input-number>}
+            {!this.readonly && <a onClick={() => this.onMoveup()}>上移</a>}
+            {!this.readonly && <a onClick={() => this.onMovedown()}>下移</a>}
             <a onClick={() => this.showAnalyse()}>查看解析</a>
-            <a onClick={() => this.deleteModule()}>删除</a>
+            {!this.readonly && <a onClick={() => this.deleteModule()}>删除</a>}
           </a-col>
         </a-row>
       </div>

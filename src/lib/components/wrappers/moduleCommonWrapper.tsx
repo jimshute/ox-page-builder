@@ -40,6 +40,19 @@ export default class ModuleCommonWrapper extends ModuleWrapperBase {
   }
 
   private render () {
+    let scopedSlots: { [key: string]: any } = {
+      ...this.$scopedSlots
+    }
+    if (!this.readonly) {
+      scopedSlots.textEditor = ({ text, style }: any) => {
+        return <div
+          key={text}
+          style={style}
+          contenteditable={true}
+          onBlur={(e: any) => this.onBlur(e)}
+        >{text}</div>
+      }
+    }
     return <div class={['cb-paper-builder-module-wrapper', {
       'cb-paper-builder-module-wrapper-active': this.currentId === this.moduleId
     }]}
@@ -47,27 +60,17 @@ export default class ModuleCommonWrapper extends ModuleWrapperBase {
       onMouseleave={(e: any) => this.onMouseLeave(e)}
     >
       <div class="cb-paper-builder-module-wrapper-inner" style={this.wrapperStyle}>
-        <div class="cb-paper-builder-module-actions-wrapper">
+        {!this.readonly && <div class="cb-paper-builder-module-actions-wrapper">
           <div class="cb-paper-builder-module-actions-inner">
             {this.draggable && <a class="drag-button"><a-icon type="drag" /></a>}
             <a onClick={() => this.deleteModule()}><cb-icon type="cb-trash" /></a>
           </div>
-        </div>
+        </div>}
         <this.module {...{
           props: {
             layoutProperties: this.filteredProps
           },
-          scopedSlots: {
-            textEditor: ({ text, style }: any) => {
-              return <div
-                key={text}
-                style={style}
-                contenteditable={true}
-                onBlur={(e: any) => this.onBlur(e)}
-              >{text}</div>
-            },
-            ...this.$scopedSlots
-          }
+          scopedSlots
         }} />
         {/* {this.$slots.default} */}
       </div>

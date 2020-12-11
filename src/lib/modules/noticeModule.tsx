@@ -20,7 +20,7 @@ export default class NoticeModule extends BuildableModule {
     }
   }
 
-  private render () {
+  protected render () {
     let { padding, margin, ...otherStyle } = this.style;
     return <div class="cb-paper-notice-module" style={{
       padding, margin

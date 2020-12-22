@@ -5,7 +5,7 @@
         :paperLayout="layoutWidthSections"
         :paperTreeNodes="paperTreeNodes"
         :modules="modules"
-        :readonly="true"
+        :readonly="false"
         @propertiesChange="onPropertiesChange"
         @delete="onDelete"
       />

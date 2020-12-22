@@ -1,16 +1,16 @@
 {
   "name": "@netm/ox-page-builder",
-  "version": "0.0.1-beta.12",
+  "version": "0.0.1-beta.17",
   "scripts": {
     "clean": "rimraf -fr lib",
     "serve": "vue-cli-service serve",
     "build": "npm run clean && babel src/lib --out-dir lib --extensions .ts,.js,.tsx --ignore src/lib/models src/lib/styles --copy-files && tsc --project tsconfig.build.json && lessc src/lib/styles/index.less lib/styles/index.css",
-    "watch": "npm run clean && tsc --project tsconfig.json && babel src/lib --watch --out-dir lib --extensions .ts,.js,.tsx --ignore src/lib/models src/lib/styles --copy-files",
+    "watch": "npm run clean && tsc --project tsconfig.build.json && babel src/lib --watch --out-dir lib --extensions .ts,.js,.tsx --ignore src/lib/models src/lib/styles --copy-files",
     "lint": "vue-cli-service lint --fix"
   },
   "main": "lib/index.js",
   "dependencies": {
-    "@netm/cb-question-viewer": "0.0.1-beta.1",
+    "@netm/cb-question-viewer": "^0.0.1-beta.10",
     "@netm/ox-frontend-shared": "^0.1.1-beta.8",
     "@netm/ox-frontend-upload": "^1.0.3",
     "@types/deep-equal": "^1.0.1",

@@ -41,8 +41,6 @@ export default class SectionModule extends ModuleBase {
     </div>
   }
 
-  private renderSection () { }
-
   protected render () {
     return this.renderComponent();
   }

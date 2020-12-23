@@ -1,6 +1,6 @@
 {
   "name": "@netm/ox-page-builder",
-  "version": "0.0.1-beta.17",
+  "version": "0.0.1-beta.20",
   "scripts": {
     "clean": "rimraf -fr lib",
     "serve": "vue-cli-service serve",

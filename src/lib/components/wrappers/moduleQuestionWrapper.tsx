@@ -104,13 +104,16 @@ export default class ModuleQuestionWrapper extends ModuleWrapperBase {
             难度：{(this.questionInfo.difficultyDegree / 100).toFixed(2)}
           </a-col>
           <a-col span="12" class="right-side">
-            分数：{this.questionInfo.type !== QuestionTypeEnum.COMBINATION && <span>{
-              this.readonly ? this.questionInfo.score : <a-input-number
-                size="small"
-                value={this.questionInfo.score}
-                onBlur={({ target: { value } }: any) => this.scoreChange(Number(value))}>
-              </a-input-number>}
-            </span>}
+            分数：<span style="margin-right: 4px;">
+              {this.questionInfo.type !== QuestionTypeEnum.COMBINATION && <span>{
+                this.readonly ? `${this.questionInfo.score}分` : <a-input-number
+                  size="small"
+                  value={this.questionInfo.score}
+                  min={0}
+                  onBlur={({ target: { value } }: any) => this.scoreChange(Number(value))}>
+                </a-input-number>}
+              </span>}
+            </span>
             {this.questionInfo.type === QuestionTypeEnum.COMBINATION && <span>
               <a-popover
                 getPopupContainer={() => this.$el}
@@ -119,11 +122,12 @@ export default class ModuleQuestionWrapper extends ModuleWrapperBase {
                 scopedSlots={{
                   content: () => <div>
                     {(this.questionInfo.subQuestionDTOS || []).map((question, index) => {
-                      return <div style="margin: 4px 0;">
+                      return <div style="margin: 4px 4px;">
                         {index + 1}.&nbsp;&nbsp;
                         {this.readonly ?
-                          question.score :
+                          `${question.score}分` :
                           <a-input-number
+                            min={0}
                             value={question.score}
                             onChange={(score: number) => this.onSubQuestionScoreChange(index, score)}
                           />}
